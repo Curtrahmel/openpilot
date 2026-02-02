@@ -160,7 +160,7 @@ class LongitudinalPlanner(LongitudinalPlannerSP):
     output_a_target_e2e = sm['modelV2'].action.desiredAcceleration
     output_should_stop_e2e = sm['modelV2'].action.shouldStop
 
-    if (output_a_target_e2e < output_a_target_mpc) and sm['selfdriveState'].experimentalMode:
+    if (output_a_target_e2e < output_a_target_mpc) and self.is_e2e(sm):
       output_a_target = output_a_target_e2e
       self.output_should_stop = output_should_stop_e2e
       self.mpc.source = SOURCES[3]
